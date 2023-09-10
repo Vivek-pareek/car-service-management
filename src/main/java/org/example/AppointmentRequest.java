@@ -9,10 +9,12 @@ public class AppointmentRequest {
     private Integer slot;
     private String appointmentId;
     private AppointmentStatus appointmentStatus;
+    private Boolean useSameOperator;
 
     public AppointmentRequest() {}
 
-    public AppointmentRequest(Long operatorId, Integer slot, String appointmentId, AppointmentStatus appointmentStatus) {
+    public AppointmentRequest(Long operatorId, Integer slot, String appointmentId, AppointmentStatus appointmentStatus, Boolean useSameOperator) {
+        this.useSameOperator = useSameOperator;
         this.slot = slot;
         this.appointmentId = appointmentId;
         this.appointmentStatus = appointmentStatus;
@@ -47,5 +49,13 @@ public class AppointmentRequest {
     // Setter for appointmentStatus
     public void setAppointmentStatus(AppointmentStatus appointmentStatus) {
         this.appointmentStatus = appointmentStatus;
+    }
+
+    public Boolean isUseSameOperator() {
+        return useSameOperator;
+    }
+
+    public void setUseSameOperator(Boolean useSameOperator) {
+        this.useSameOperator = useSameOperator;
     }
 }

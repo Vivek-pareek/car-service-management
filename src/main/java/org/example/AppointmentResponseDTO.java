@@ -1,5 +1,6 @@
 package org.example;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import java.time.LocalDate;
@@ -11,8 +12,13 @@ public class AppointmentResponseDTO {
     private String customerName;
     private Long customerId;
     private String appointmentId;
+    @JsonIgnore
+    private Integer startOfSlot;
+    @JsonIgnore
+    private Integer endOfSlot;
     private String slot;
     private LocalDate date;
+
 
     public AppointmentResponseDTO() {
     }
@@ -23,10 +29,21 @@ public class AppointmentResponseDTO {
         this.customerName = appointment.getCustomer().getName();
         this.customerId = appointment.getCustomer().getId();
         this.appointmentId = appointment.getAppointmentId();
+        this.startOfSlot = appointment.getSlot() - 1;
+        this.endOfSlot = appointment.getSlot();
         StringBuilder slotBuilder = new StringBuilder();
         slotBuilder.append(appointment.getSlot() - 1).append(" - ").append(appointment.getSlot());
         this.slot = slotBuilder.toString();
         this.date = appointment.getCreatedDate();
+    }
+
+    public AppointmentResponseDTO(Appointment appointment, Integer startOfSlot, Integer endOfSlot){
+        this(appointment);
+        StringBuilder slotBuilder = new StringBuilder();
+        this.slot = slotBuilder.append(startOfSlot).append(" - ").append(endOfSlot).toString();
+        this.customerId = null;
+        this.customerName = null;
+        this.appointmentId = null;
     }
 
     public String getOperatorName() {
@@ -83,5 +100,21 @@ public class AppointmentResponseDTO {
 
     public void setDate(LocalDate date) {
         this.date = date;
+    }
+
+    public Integer getStartOfSlot() {
+        return startOfSlot;
+    }
+
+    public void setStartOfSlot(Integer startOfSlot) {
+        this.startOfSlot = startOfSlot;
+    }
+
+    public Integer getEndOfSlot() {
+        return endOfSlot;
+    }
+
+    public void setEndOfSlot(Integer endOfSlot) {
+        this.endOfSlot = endOfSlot;
     }
 }

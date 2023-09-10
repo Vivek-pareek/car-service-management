@@ -15,9 +15,9 @@ public class SchedulerController {
     @Autowired
     private SchedulerService schedulerService;
 
-    @GetMapping("/operators")
+    @GetMapping("/operatorsList")
     public ResponseEntity<ResponseObj> getAllOperators() {
-        return ResponseObjUtils.responseObj("List of operators", schedulerService.getOpenSlots());
+        return ResponseObjUtils.responseObj("List of operators", schedulerService.getAllOperators());
     }
 
     @GetMapping("/bookedAppointments/{operatorId}")
@@ -32,24 +32,59 @@ public class SchedulerController {
 
     @PostMapping("/appointment/{operatorId}")
     public ResponseEntity<ResponseObj> scheduleAppointmentWithOperator(@PathVariable("operatorId") Long operatorId, @RequestBody AppointmentRequest appointmentRequest){
+        validateAppointmentRequest(appointmentRequest);
         String appointmentId = schedulerService.scheduleAppointmentWithOperator(operatorId, appointmentRequest.getSlot());
-        Map<String, Object> responseData = new HashMap<>();
-        responseData.put("appointmentId", appointmentId);
-        return ResponseObjUtils.responseObj("Appointment Scheduled successfuly with appointment Id : " + appointmentId, responseData);
+        return ResponseObjUtils.responseObj("Appointment Scheduled successfuly with appointment Id : " + appointmentId, appointmentIdResponseDataMap(appointmentId));
     }
 
     @PostMapping("/appointment")
     public ResponseEntity<ResponseObj> scheduleAppointment(@RequestBody AppointmentRequest appointmentRequest){
+        validateAppointmentRequest(appointmentRequest);
         String appointmentId = schedulerService.scheduleAppointment(appointmentRequest.getSlot());
-        Map<String, Object> responseData = new HashMap<>();
+        return ResponseObjUtils.responseObj("Appointment Scheduled successfuly with appointment Id : " + appointmentId, appointmentIdResponseDataMap(appointmentId));
+    }
+
+    @PostMapping("/updateAppointment")
+    public ResponseEntity<ResponseObj> updateAppointment(@RequestBody AppointmentRequest appointmentRequest){
+        //Here, we are using the same api for cancelling and rescheduling the appointment
+        if(AppointmentStatus.CANCELLED.equals(appointmentRequest.getAppointmentStatus())){
+            schedulerService.cancelAppointment(appointmentRequest.getAppointmentId());
+            return ResponseObjUtils.responseObj("Appointment successfully cancelled", null);
+        }
+        else if(AppointmentStatus.RESCHEDULED.equals(appointmentRequest.getAppointmentStatus())){
+            String appointmentId;
+            validateAppointmentRequest(appointmentRequest);
+            if(appointmentRequest.isUseSameOperator() != null && appointmentRequest.isUseSameOperator()){
+                appointmentId = schedulerService.rescheduleAppointment(appointmentRequest.getAppointmentId(), appointmentRequest.getSlot(), true);
+            } else {
+                appointmentId = schedulerService.rescheduleAppointment(appointmentRequest.getAppointmentId(), appointmentRequest.getSlot(), false);
+            }
+            return ResponseObjUtils.responseObj("Successfully updated appointment" + appointmentId, appointmentIdResponseDataMap(appointmentId));
+        }
+        else {
+            return ResponseObjUtils.responseObj("Appointment update status is invalid", null);
+        }
+    }
+
+    @GetMapping("/getOpenSlots")
+    public ResponseEntity<ResponseObj> getOpenSlots(){
+        return ResponseObjUtils.responseObj("Open slots details", schedulerService.getOpenSlots());
+    }
+
+    @GetMapping("/getOpenSlots/{operatorId}")
+    public ResponseEntity<ResponseObj> getOpenSlotsForOperator(@PathVariable Long operatorId){
+        return ResponseObjUtils.responseObj("Open slots for requested operator", schedulerService.getOpenSlotsByOperator(operatorId));
+    }
+
+    private Map<String, String> appointmentIdResponseDataMap(String appointmentId){
+        Map<String, String> responseData = new HashMap<>();
         responseData.put("appointmentId", appointmentId);
-        return ResponseObjUtils.responseObj("Appointment Scheduled successfuly with appointment Id : " + appointmentId, responseData);
+        return responseData;
     }
 
-    @DeleteMapping("/appointment")
-    public ResponseEntity<ResponseObj> deleteAppointment(@RequestBody AppointmentRequest appointmentRequest){
-        schedulerService.cancelAppointment(appointmentRequest.getAppointmentId());
-        return ResponseObjUtils.responseObj("Appointment cancelled successfuly for appointment Id: " + appointmentRequest.getAppointmentId(), null);
+    private void validateAppointmentRequest(AppointmentRequest appointmentRequest){
+        if(appointmentRequest.getSlot() != null && (appointmentRequest.getSlot() < 0 || appointmentRequest.getSlot() > 24)){
+            throw new RuntimeException("Slot value cannot be below 0 or above 24");
+        }
     }
-
 }
