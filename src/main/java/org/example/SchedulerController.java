@@ -83,8 +83,8 @@ public class SchedulerController {
     }
 
     private void validateAppointmentRequest(AppointmentRequest appointmentRequest){
-        if(appointmentRequest.getSlot() != null && (appointmentRequest.getSlot() < 0 || appointmentRequest.getSlot() > 24)){
-            throw new RuntimeException("Slot value cannot be below 0 or above 24");
+        if(appointmentRequest.getSlot() == null || (appointmentRequest.getSlot() < 0 || appointmentRequest.getSlot() > 24)){
+            throw new RuntimeException("Slot value cannot be null below 0 or above 24");
         }
     }
 }
