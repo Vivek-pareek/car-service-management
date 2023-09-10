@@ -7,12 +7,12 @@ import java.time.LocalDate;
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class AppointmentRequest {
     private Integer slot;
-    private Integer appointmentId;
+    private String appointmentId;
     private AppointmentStatus appointmentStatus;
 
     public AppointmentRequest() {}
 
-    public AppointmentRequest(Long operatorId, Integer slot, Integer appointmentId, AppointmentStatus appointmentStatus) {
+    public AppointmentRequest(Long operatorId, Integer slot, String appointmentId, AppointmentStatus appointmentStatus) {
         this.slot = slot;
         this.appointmentId = appointmentId;
         this.appointmentStatus = appointmentStatus;
@@ -30,12 +30,12 @@ public class AppointmentRequest {
     }
 
     // Getter for appointmentId
-    public Integer getAppointmentId() {
+    public String getAppointmentId() {
         return appointmentId;
     }
 
     // Setter for appointmentId
-    public void setAppointmentId(Integer appointmentId) {
+    public void setAppointmentId(String appointmentId) {
         this.appointmentId = appointmentId;
     }
 

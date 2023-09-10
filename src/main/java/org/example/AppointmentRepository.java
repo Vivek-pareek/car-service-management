@@ -11,5 +11,7 @@ public interface AppointmentRepository extends JpaRepository<Appointment, String
     List<Appointment> findByOperatorIdAndSlotAndCreatedDateAndStatus(
             Long operatorId, Integer slot, LocalDate createdDate, AppointmentStatus status
     );
-    List<Appointment> findBySlotAndStatus(Integer slot, AppointmentStatus status);
+    List<Appointment> findBySlotAndCreatedDateAndStatus(Integer slot, LocalDate createdDate, AppointmentStatus status);
+    List<Appointment> findByOperatorIdAndCreatedDateAndStatus(Long operatorId, LocalDate createdDate, AppointmentStatus status);
+    List<Appointment> findByCreatedDateAndStatus(LocalDate createdDate, AppointmentStatus status);
 }
