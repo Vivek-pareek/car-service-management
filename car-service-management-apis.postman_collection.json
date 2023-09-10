@@ -1,0 +1,569 @@
+{
+	"info": {
+		"_postman_id": "24754292-152c-4f3d-9f9d-02071ac6ebe8",
+		"name": "car-service-management-apis",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21705175",
+		"_collection_link": "https://www.postman.com/docking-module-architect-59011354/workspace/p360/collection/21705175-24754292-152c-4f3d-9f9d-02071ac6ebe8?action=share&source=collection_link&creator=21705175"
+	},
+	"item": [
+		{
+			"name": "Book appointment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"slot\" : \"1\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/schedule/appointment/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"schedule",
+						"appointment",
+						"2"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Book appointment (schedule/appointment/{operatorId})",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"slot\" : \"1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/schedule/appointment/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"schedule",
+								"appointment",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 10 Sep 2023 22:53:02 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"httpStatus\": 200,\n    \"success\": true,\n    \"message\": \"Appointment Scheduled successfuly with appointment Id : 9b5e5216-a9a1-4596-abfc-52bbb8738420\",\n    \"data\": {\n        \"appointmentId\": \"9b5e5216-a9a1-4596-abfc-52bbb8738420\"\n    }\n}"
+				},
+				{
+					"name": "Book appointment not operator specific",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"slot\" : \"1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/schedule/appointment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"schedule",
+								"appointment"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 10 Sep 2023 22:54:18 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"httpStatus\": 200,\n    \"success\": true,\n    \"message\": \"Appointment Scheduled successfuly with appointment Id : e09fc1fd-7ed6-4ef5-8aeb-50105b1eebc7\",\n    \"data\": {\n        \"appointmentId\": \"e09fc1fd-7ed6-4ef5-8aeb-50105b1eebc7\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "get all open slots for operators",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/schedule/getOpenSlots",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"schedule",
+						"getOpenSlots"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get all open slots for operators",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/schedule/getOpenSlots",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"schedule",
+								"getOpenSlots"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 10 Sep 2023 23:06:43 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"httpStatus\": 200,\n    \"success\": true,\n    \"message\": \"Open slots details\",\n    \"data\": {\n        \"1\": [\n            {\n                \"operatorName\": \"serviceOperator1\",\n                \"operatorId\": 1,\n                \"slot\": \"9 - 24\",\n                \"date\": \"2023-09-11\"\n            }\n        ],\n        \"2\": [\n            {\n                \"operatorName\": \"serviceOperator2\",\n                \"operatorId\": 2,\n                \"slot\": \"1 - 6\",\n                \"date\": \"2023-09-11\"\n            },\n            {\n                \"operatorName\": \"serviceOperator2\",\n                \"operatorId\": 2,\n                \"slot\": \"7 - 12\",\n                \"date\": \"2023-09-11\"\n            },\n            {\n                \"operatorName\": \"serviceOperator2\",\n                \"operatorId\": 2,\n                \"slot\": \"13 - 24\",\n                \"date\": \"2023-09-11\"\n            }\n        ],\n        \"3\": [\n            {\n                \"operatorName\": null,\n                \"operatorId\": 3,\n                \"slot\": \"0 - 24\",\n                \"date\": null\n            }\n        ]\n    }\n}"
+				},
+				{
+					"name": "get all booked appointments",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/schedule/bookedAppointments",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"schedule",
+								"bookedAppointments"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 10 Sep 2023 23:03:17 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"httpStatus\": 200,\n    \"success\": true,\n    \"message\": \"Booked appointments for all operators.\",\n    \"data\": {\n        \"1\": [\n            {\n                \"operatorName\": \"serviceOperator1\",\n                \"operatorId\": 1,\n                \"customerName\": \"Vivek\",\n                \"customerId\": 1,\n                \"appointmentId\": \"f13e0050-a2e5-48e6-9748-36b89fd02339\",\n                \"slot\": \"8 - 9\",\n                \"date\": \"2023-09-11\"\n            }\n        ],\n        \"2\": [\n            {\n                \"operatorName\": \"serviceOperator2\",\n                \"operatorId\": 2,\n                \"customerName\": \"Vivek\",\n                \"customerId\": 1,\n                \"appointmentId\": \"9b5e5216-a9a1-4596-abfc-52bbb8738420\",\n                \"slot\": \"0 - 1\",\n                \"date\": \"2023-09-11\"\n            },\n            {\n                \"operatorName\": \"serviceOperator2\",\n                \"operatorId\": 2,\n                \"customerName\": \"Vivek\",\n                \"customerId\": 1,\n                \"appointmentId\": \"17daf7e5-ddd0-4171-81bd-f1475e5fd552\",\n                \"slot\": \"6 - 7\",\n                \"date\": \"2023-09-11\"\n            },\n            {\n                \"operatorName\": \"serviceOperator2\",\n                \"operatorId\": 2,\n                \"customerName\": \"Vivek\",\n                \"customerId\": 1,\n                \"appointmentId\": \"0ef62a10-06e2-48d8-8a90-f24ebd748297\",\n                \"slot\": \"12 - 13\",\n                \"date\": \"2023-09-11\"\n            }\n        ],\n        \"3\": []\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "get all open slots for specific operator (schedule/getOpenSlots/{operatorId})",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/schedule/getOpenSlots/2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"schedule",
+						"getOpenSlots",
+						"2"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "get all booked appointments for specific operator",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/schedule/bookedAppointments/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"schedule",
+								"bookedAppointments",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 10 Sep 2023 23:05:32 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"httpStatus\": 200,\n    \"success\": true,\n    \"message\": \"Booked appointments for the requested operator\",\n    \"data\": [\n        {\n            \"operatorName\": \"serviceOperator2\",\n            \"operatorId\": 2,\n            \"customerName\": \"Vivek\",\n            \"customerId\": 1,\n            \"appointmentId\": \"0ef62a10-06e2-48d8-8a90-f24ebd748297\",\n            \"slot\": \"12 - 13\",\n            \"date\": \"2023-09-11\"\n        },\n        {\n            \"operatorName\": \"serviceOperator2\",\n            \"operatorId\": 2,\n            \"customerName\": \"Vivek\",\n            \"customerId\": 1,\n            \"appointmentId\": \"17daf7e5-ddd0-4171-81bd-f1475e5fd552\",\n            \"slot\": \"6 - 7\",\n            \"date\": \"2023-09-11\"\n        },\n        {\n            \"operatorName\": \"serviceOperator2\",\n            \"operatorId\": 2,\n            \"customerName\": \"Vivek\",\n            \"customerId\": 1,\n            \"appointmentId\": \"9b5e5216-a9a1-4596-abfc-52bbb8738420\",\n            \"slot\": \"0 - 1\",\n            \"date\": \"2023-09-11\"\n        }\n    ]\n}"
+				},
+				{
+					"name": "get all open slots for specific operator (schedule/getOpenSlots/{operatorId})",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/schedule/getOpenSlots/2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"schedule",
+								"getOpenSlots",
+								"2"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 10 Sep 2023 23:11:43 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"httpStatus\": 200,\n    \"success\": true,\n    \"message\": \"Open slots for requested operator\",\n    \"data\": [\n        {\n            \"operatorName\": \"serviceOperator2\",\n            \"operatorId\": 2,\n            \"slot\": \"1 - 6\",\n            \"date\": \"2023-09-11\"\n        },\n        {\n            \"operatorName\": \"serviceOperator2\",\n            \"operatorId\": 2,\n            \"slot\": \"7 - 12\",\n            \"date\": \"2023-09-11\"\n        },\n        {\n            \"operatorName\": \"serviceOperator2\",\n            \"operatorId\": 2,\n            \"slot\": \"13 - 24\",\n            \"date\": \"2023-09-11\"\n        }\n    ]\n}"
+				}
+			]
+		},
+		{
+			"name": "Reschedule appointment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"appointmentStatus\" : \"RESCHEDULED\",\n    \"appointmentId\" : \"37ebcec9-c9ce-49e0-a89a-eebf6d7c43d0\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/schedule/updateAppointment",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"schedule",
+						"updateAppointment"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Reschedule appointment",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"appointmentStatus\" : \"RESCHEDULED\",\n    \"appointmentId\" : \"37ebcec9-c9ce-49e0-a89a-eebf6d7c43d0\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/schedule/updateAppointment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"schedule",
+								"updateAppointment"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 10 Sep 2023 23:16:13 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"httpStatus\": 200,\n    \"success\": true,\n    \"message\": \"Successfully updated appointment3b3d757b-5b1d-44d0-91a5-7df428743cd9\",\n    \"data\": {\n        \"appointmentId\": \"3b3d757b-5b1d-44d0-91a5-7df428743cd9\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Cancel appointment",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"appointmentStatus\" : \"CANCELLED\",\n    \"appointmentId\" : \"6c19cb7d-e1a2-4410-bc9e-71e1dfb77588\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/schedule/updateAppointment",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"schedule",
+						"updateAppointment"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Cancel appointment",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"appointmentStatus\" : \"CANCELLED\",\n    \"appointmentId\" : \"6c19cb7d-e1a2-4410-bc9e-71e1dfb77588\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/schedule/updateAppointment",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"schedule",
+								"updateAppointment"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Sun, 10 Sep 2023 23:17:59 GMT"
+						},
+						{
+							"key": "Keep-Alive",
+							"value": "timeout=60"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"httpStatus\": 200,\n    \"success\": true,\n    \"message\": \"Appointment successfully cancelled\",\n    \"data\": null\n}"
+				}
+			]
+		}
+	]
+}
